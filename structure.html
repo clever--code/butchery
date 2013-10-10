@@ -382,7 +382,14 @@ define(function(){
     			lineNumbers: true,
     			styleActiveLine: true,
     			matchBrackets: true,
-    			extraKeys: {"Ctrl-Space": "autocomplete"}
+    			extraKeys: {
+    				"Ctrl-Space": "autocomplete", 
+    				"F11": function(cm) {
+		          		cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+		        	},
+		        	"Esc": function(cm) {
+		          		if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+		        	}}
     		};
         
 		(CodeMirror.fromTextArea(document.getElementById("codeIndex"), options)).setOption("theme", "ambiance");
