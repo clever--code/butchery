@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Butchery</title>
+
+    <link href="assets/bootstrap3/css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/bootstrap3/assets/js/html5shiv.js"></script>
+      <script src="assets/bootstrap3/js/respond.min.js"></script>
+    <![endif]-->
+
+	<link rel=stylesheet href="assets/codemirror-3.18/doc/docs.css">
+	<link rel="stylesheet" href="assets/codemirror-3.18/lib/codemirror.css">
+	<link rel="stylesheet" href="assets/codemirror-3.18/theme/ambiance.css">
+	<link rel="stylesheet" href="assets/codemirror-3.18/addon/hint/show-hint.css">
+	<script src="assets/codemirror-3.18/lib/codemirror.js"></script>
+	<script src="assets/codemirror-3.18/mode/javascript/javascript.js"></script>
+	<script src="assets/codemirror-3.18/keymap/extra.js"></script>
+	<script src="assets/codemirror-3.18/addon/selection/active-line.js"></script>
+	<script src="assets/codemirror-3.18/addon/edit/matchbrackets.js"></script>
+	<script src="assets/codemirror-3.18/addon/hint/show-hint.js"></script>
+	<script src="assets/codemirror-3.18/addon/hint/javascript-hint.js"></script>
+
+    <link href="assets/css/cc.css" rel="stylesheet">
+    <style type="text/css">
+	    body {
+			background-attachment: fixed !important;
+		}
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Butchery</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="started.html">Started</a></li>
+                <li><a href="https://github.com/clever--code/butchery/archive/master.zip">Download</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="active"><a href="structure.html">Structure</a></li>
+                    <li><a href="namingStandards.html">Naming Standards</a></li>
+                    <li><a href="helpers.html">Helpers</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Disliked code</li>
+                    <li><a href="https://github.com/clever--code/butchery/issues/new">Send suggestion</a></li>
+                    <li><a href="https://github.com/clever--code/butchery">Collaborate with the project</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container marketing">
+      <hr class="featurette-divider">
+      
+      <div class="row featurette">
+        <div class="col-md-12">
+          <h2 class="featurette-heading" style="margin-top: 0px;">Structure <span class="text-muted">.</span></h2>
+          <p class="lead"><br/></p>
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-9" style="background-image: url('assets/img/faca-para-carne_3.png'); background-position: right bottom; background-repeat: no-repeat;">
+				
+          			<span style="color: #D9534F;">
+          			|:_/ butchery</span><br/>
+          			|______ index.html<br/>
+          			<span style="color: #4679BD;">
+          			|______ butchery.js</span><br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_____:_/ src</span><br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_________ business</span><br/>
+          			|___________ YorAppBO.js<br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_________ controller</span><br/>
+          			|___________ FrontController.js<br/>
+          			|___________ YorAppController.js<br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_________ dao</span><br/>
+          			|___________ YorAppDAO.js<br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_________ helpers</span><br/>
+          			|___________ helpers.js<br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_________ models</span><br/>
+          			|___________ ExempleBean.js<br/>
+          			
+          			<span style="color: #D9534F;">
+          			|_________ views</span><br/>
+          			|___________ YorAppView.js<br/>
+          			
+				</div>
+			</div>
+        </div>
+      </div>
+
+<hr class="featurette-divider">
+<h2>index.html</h2>
+<form>
+<textarea id="codeIndex" name="code">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="CleverCode">
+	<meta name="description" content="Normalized JavaScript">
+	<title>Butchery</title>
+	<link href="../assets/bootstrap3/css/bootstrap.css" rel="stylesheet">
+	<script data-main="src/controller/FrontController" src="butchery.js"></script>
+</head>
+<body>
+	<div style="height: 50px;"></div>
+	<div class="container">
+		<a href="#YorAppController/getStart">getStart</a> | <a href="#YorAppController/getStart/5">getStart 5</a> | <a href="./index.html">Home</a> | <a href="javascript:alert('none');">Alert</a>
+		<hr/>
+		<button class="btn" data-controller="YorAppBO/getExempleList/1/5">Teste</button>
+		<hr/>
+		<div id="content"></div>
+	</div>
+</body>
+</html>
+</textarea>
+</form>
+
+<hr class="featurette-divider">
+<h2>FrontController.js</h2>
+<form>
+<textarea id="codeFrontController" name="code">
+require(["../controller/YorAppController"],function (YorAppController){
+	"use strict";
+	var _this = {
+			
+			/**
+			 * @param obj
+			 */
+			reflection : function(rflt){
+				try {
+					(rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
+				} finally {}
+			},
+			
+			/**
+			 * @param value
+			 * @returns {___anonymous363_392}
+			 */
+			parser : function(value){
+				var content = value.replace('#','').split('/');
+				var args = '';
+				if(content.length > 2){ for(var i = 2; i<content.length; i++){ args += (!((i+1) === content.length))?content[i] + ',':content[i]; } }
+				return {"controller":content[0], "obj":content[1],"args":args};
+			},
+			
+			/**
+			 * Management Requirements
+			 */
+			service : function(){
+				if((/#/g).test(document.URL)){
+					var content = _this.parser((document.URL.split("#")[(document.URL.split("#").length-1)]));
+					_this.reflection({"controller":content.controller, "content":content});
+				}
+				$('a').click(function(obj){
+					if((/#/g).test(obj.target.getAttribute('href'))){
+						var content = _this.parser(obj.target.getAttribute('href'));
+						_this.reflection({"controller":content.controller, "content":content});
+					}
+				});
+			}
+			
+	};
+	_this.service();
+});
+</textarea>
+</form>
+
+<hr class="featurette-divider">
+<h2>YorAppController.js</h2>
+<form>
+<textarea id="codeYorAppController" name="code">
+define(["../business/YorAppBO"], function(YorAppBO){
+	var _this = {
+			
+			/**
+			 * @param obj
+			 */
+			reflection : function(rflt){
+				try {
+					(rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
+				} finally {}
+			},
+			
+			/**
+			 * @param obj
+			 */
+			objReflection : function(obj){
+				var content = _this.parser(obj.target.dataset.controller);
+				_this.reflection({"controller":content.controller, "content":content});
+			},
+			
+			/**
+			 * @param value
+			 * @returns {___anonymous363_392}
+			 */
+			parser : function(value){
+				var content = value.replace('#','').split('/');
+				var args = '';
+				if(content.length > 2){ for(var i = 2; i<content.length; i++){ args += (!((i+1) === content.length))?content[i] + ',':content[i]; } }
+				return {"controller":content[0], "obj":content[1],"args":args};
+			},
+			
+			/**
+			 * Define addEventListeners in DashBoard
+			 */
+			setEventListeners : function(){
+				document.body.addEventListener('click',_this.objReflection);
+			},
+
+			/**
+			 * Start Aplication
+			 */
+			getStart : function(){
+				YorAppBO.getStart(arguments);
+				_this.setEventListeners();
+			}
+			
+	};
+	return _this;
+});
+</textarea>
+</form>
+
+
+<hr class="featurette-divider">
+<h2>YorAppBO.js</h2>
+<form>
+<textarea id="codeYorAppBO" name="code">
+define(["../dao/YorAppDAO"], function(YorAppDAO){
+	var _this = {
+			
+			/**
+			 * Example list of business
+			 */
+			getExempleList : function(){
+				YorAppDAO.getExempleList(function(dataTable){
+					var table = '';
+					dataTable.forEach(function(exempleBean){
+						table += '<tr><td>' + exempleBean.getId() + '</td><td>' + exempleBean.getName() + '</td></tr>';
+					});
+					$('#content tbody').html(table);
+				});
+				console.log(arguments);
+			},
+			
+			/**
+			 * Example of business method
+			 */
+			getStart: function(){
+				$('#content').html('<table class="table table-hover"><thead><tr><th style="width:15px;">Id</th><th>Name</th></tr></thead><tbody></tbody></table>');
+				console.log('Yor App Start...');
+				console.log(arguments[0]);
+			}
+	
+		};
+	return _this;
+});
+</textarea>
+</form>
+
+
+<hr class="featurette-divider">
+<h2>YorAppDAO.js</h2>
+<form>
+<textarea id="codeYorAppDAO" name="code">
+define(["../helpers/helpers", "../dao/DataBase/exempleList", "../models/ExempleBean"], function(helpers, exempleList, ExempleBean){
+	return {
+		
+		getExempleList : function(callback){
+			resultsList = new helpers.ArrayList();
+			for(method in exempleList){
+				exempleBean = new ExempleBean(exempleList[method]);
+				resultsList.add(exempleBean);
+			}
+			callback(resultsList);
+		}
+	
+	};
+});
+</textarea>
+</form>
+
+
+<hr class="featurette-divider">
+<h2>ExempleBean.js</h2>
+<form>
+<textarea id="codeExempleBean" name="code">
+define(function(){
+	return function(){
+		this.config = (arguments.length == 1)?arguments[0]:{"id":"1", "name":""};
+		
+		this.setId = function(value){
+			this.config.id = value;
+		};
+		
+		this.getId = function(){
+			return this.config.id;
+		};
+		
+		this.setName = function(value){
+			this.config.name = value;
+		};
+		
+		this.getName = function(){
+			return this.config.name;
+		};
+	};
+});	
+</textarea>
+</form>
+
+
+      <hr class="featurette-divider">
+    </div>
+
+      <footer>
+      	<div class="container">
+      		<br/><br/>
+	        <p class="pull-right"><a href="#">Back to top</a></p>
+	        <p>&copy; 2012 CleverCode. &middot; <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">Project license</a></p>
+        </div>
+      </footer>
+
+	<div class="forkme"><a href="https://github.com/clever--code/butchery" target="_blank"><img src="assets/img/forkme_right_darkblue_121621.png" border="0"></div>
+	
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/bootstrap3/js/bootstrap.min.js"></script>
+    <script src="assets/js/holder.js"></script>
+    
+    <script type="text/javascript">
+    	$.get('https://api.github.com/repos/clever--code/butchery/contributors', function(collaborators){
+    		for(var i=0; i < collaborators.length; i++){
+    			console.log(collaborators[i]);
+    		}
+    	});
+    	
+        CodeMirror.commands.autocomplete = function(cm) {
+            CodeMirror.showHint(cm, CodeMirror.hint.javascript);
+        };
+        
+        var options = {
+    			lineNumbers: true,
+    			styleActiveLine: true,
+    			matchBrackets: true,
+    			extraKeys: {"Ctrl-Space": "autocomplete"}
+    		};
+        
+		(CodeMirror.fromTextArea(document.getElementById("codeIndex"), options)).setOption("theme", "ambiance");
+		(CodeMirror.fromTextArea(document.getElementById("codeFrontController"), options)).setOption("theme", "ambiance");
+		(CodeMirror.fromTextArea(document.getElementById("codeYorAppController"), options)).setOption("theme", "ambiance");
+		(CodeMirror.fromTextArea(document.getElementById("codeYorAppBO"), options)).setOption("theme", "ambiance");
+		(CodeMirror.fromTextArea(document.getElementById("codeYorAppDAO"), options)).setOption("theme", "ambiance");
+		(CodeMirror.fromTextArea(document.getElementById("codeExempleBean"), options)).setOption("theme", "ambiance");
+    </script>
+    
+  </body>
+</html>
