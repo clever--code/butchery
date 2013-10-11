@@ -1,196 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Butchery</title>
-
-    <link href="assets/bootstrap3/css/bootstrap.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="assets/bootstrap3/assets/js/html5shiv.js"></script>
-      <script src="assets/bootstrap3/js/respond.min.js"></script>
-    <![endif]-->
-
-    <link href="assets/css/cc.css" rel="stylesheet">
-  </head>
-  
-  <body>
-    <div class="navbar-wrapper">
-      <div class="container">
-
-        <div class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Butchery</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="started.html">Started</a></li>
-                <li><a href="https://github.com/clever--code/butchery/archive/master.zip">Download</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="structure.html">Structure</a></li>
-                    <li><a href="namingStandards.html">Naming Standards</a></li>
-                    <li><a href="helpers.html">Helpers</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Disliked code</li>
-                    <li><a href="https://github.com/clever--code/butchery/issues/new">Send suggestion</a></li>
-                    <li><a href="https://github.com/clever--code/butchery/tree/master/Butchery/WebContent/butchery">Collaborate with the project</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-    <div id="myCarousel" class="carousel slide">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1><span>...:: Butchery ::...</span></h1> <hr/><h1>Normalized JavaScript</h1>
-              <p>Model, Businnes, Controller, DAO, Helper.</p>
-              <p><a class="btn btn-lg btn-danger" href="https://github.com/clever--code/butchery/archive/master.zip">Download</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Small slices code</h1>
-              <p>Here in our butcher, get your code more readable, and divided into small slices of code, which will allow for sustainability and security during development and maintenance</p>
-              <p><a class="btn btn-large btn-primary" href="started.html">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Application managed by EventListeners</h1>
-              <p>Have all the listeners of your application under control, avoiding overloads and breaks runtime</p>
-              <p><a class="btn btn-large btn-primary" href="started.html">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
-
-    <div class="container marketing">
-
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" src="assets/img/butchery_cod01.jpeg" width="350">
-          <h2>We do have a controller</h2>
-          <p>Ever wondered develop in Java Script as if in JAVA? <br/> We slice our code intuitively, based on the MVC model.</p>
-          <p><a class="btn btn-default" href="started.html">Meet the folder structure &raquo;</a></p>
-        </div>
-        <div class="col-lg-4">
-          <img class="img-circle" src="assets/img/butchery_cod02.jpeg" width="350">
-          <h2>Manage your business layer</h2>
-          <p>Here in our butcher, we slice your layer of business-specific classes, ensuring greater control of processes.</p>
-          <p><a class="btn btn-default" href="started.html">View details &raquo;</a></p>
-        </div>
-        <div class="col-lg-4">
-          <img class="img-circle" src="assets/img/butchery_cod03.jpeg" width="350">
-          <h2>Requests center</h2>
-          <p>Normalizing a layer of requests, ensure greater reuse your controller, and an even more performant..</p>
-          <p><a class="btn btn-default" href="started.html">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Content sorted, <span class="text-muted">and your mind peaceful.</span></h2>
-          <p class="lead">Our folder structure hás been prepared to help you locate.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="assets/img/folders03.png">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="assets/img/butchery_cod05.PNG">
-        </div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead"><br/>We also have POJO.<br/>Plain Old JavaScript Object... Following the best practices of Java, we developed a structured layer model, in order to normalize objects and lists in JavaScript;</p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead"><br/></p>
-          <div class="lead">
-	          <ul>
-	          	<li>Native support RESTFul</li>
-	          	<li>Full compatibility with jQuery</li>
-	          	<li>Support includes external</li>
-	          </ul>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="assets/img/butchery_cod07.png">
-        </div>
-      </div>
-      
-      <hr class="featurette-divider">
-
-    </div>
-
-      <footer>
-      	<div class="container">
-      		<br/><br/>
-	        <p class="pull-right"><a href="#">Back to top</a></p>
-	        <p>&copy; 2012 CleverCode. &middot; <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">Project license</a></p>
-        </div>
-      </footer>
-
-	<div class="forkme"><a href="https://github.com/clever--code/butchery" target="_blank"><img src="assets/img/forkme_right_darkblue_121621.png" border="0"></div>
-	
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/bootstrap3/js/bootstrap.min.js"></script>
-    <script src="assets/js/holder.js"></script>
-    
-    <script type="text/javascript">
-    	$.get('https://api.github.com/repos/clever--code/butchery/contributors', function(collaborators){
-    		for(var i=0; i < collaborators.length; i++){
-    			console.log(collaborators[i]);
-    		}
-    	});
-    </script>
-    
-  </body>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="CleverCode">
+	<meta name="description" content="Normalized JavaScript">
+	<title>Butchery</title>
+	<link href="assets/bootstrap3/css/bootstrap.css" rel="stylesheet">
+	<script data-main="butchery/src/controller/FrontController" src="butchery/butchery.js"></script>
+</head>
+<body>
+	<div style="height: 50px;"></div>
+	<div class="container">
+		<a href="#YorAppController/getStart">getStart</a> | <a href="#YorAppController/getStart/5">getStart 5</a> | <a href="./index.html">Home</a> | <a href="javascript:alert('none');">Simple Alert</a>
+		<hr/>
+		<button class="btn" data-controller="YorAppBO/getExempleList/1/5">Teste</button>
+		<hr/>
+		<div id="content"></div>
+	</div>
+</body>
 </html>
