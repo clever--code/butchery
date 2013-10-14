@@ -1,12 +1,11 @@
 /*
- Butchery Copyright (c) 2010-2012, The CleverCode Foundation All Rights Reserved.
+ Butchery Copyright (c), The CleverCode Foundation All Rights Reserved.
  Available via the MIT or new BSD license or GNU General Public License.
  see: http://clever--code.github.io/butchery/
-
- Date: 2013-10-08T17:58
  RequireJS 2.1.8 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  Available via the MIT or new BSD license.
  see: http://github.com/jrburke/requirejs for details
+ Date: 2013-10-08T17:58
 */
 (function(window){var N$=function(){var atributes={};try{atributes=arguments.length==1?document.querySelectorAll(arguments[0]):document.querySelectorAll("body")}catch(e){atributes=arguments[0]}var core=function(){this.constructor=arguments[0];this.obj=function(){if(constructor.length==undefined)return this.constructor;else if(constructor.length==1)return this.constructor[0];else[].map.call(this.constructor,function(obj){arguments[0](obj)})};this.html=function(){if(constructor.length==undefined)if(arguments.length==
 1)this.constructor.innerHTML=arguments[0];else return this.constructor.innerHTML;else if(arguments.length==1){var value=arguments[0];[].map.call(this.constructor,function(obj){obj.innerHTML=value})}else[].map.call(this.constructor,function(obj){arguments[0](obj.innerHTML)})};this.toggle=function(){if(constructor.length==undefined)this.constructor.style.display=this.constructor.style.display===""?"none":this.constructor.style.display==="none"?"inline-block":"none";else[].map.call(this.constructor,
