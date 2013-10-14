@@ -220,14 +220,15 @@
 			
 			this.load = function(url){
 			    var client = new XMLHttpRequest();
+			    var _constructor = this.constructor;
 			    client.open("GET", url, true);
 			    client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			    client.onload = function() {
 			    	var response = this.response;
-					if(constructor.length == undefined){
-						this.constructor.innerHTML = response;
+					if(_constructor.length == undefined){
+						_constructor.innerHTML = response;
 					} else {
-						[].map.call(this.constructor, function(obj){
+						[].map.call(_constructor, function(obj){
 							obj.innerHTML = response;
 						});
 					}
