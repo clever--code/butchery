@@ -3,7 +3,7 @@
  * http://clevercode.com.br/
  * Copyright 2012 CleverCode Foundation
  * 
- * @license Butchery Copyright (c) 2010-2012, The CleverCode Foundation All Rights Reserved.
+ * @license Butchery Copyright (c), The CleverCode Foundation All Rights Reserved.
  * Available via the MIT or new BSD license or GNU General Public License.
  * see: http://clever--code.github.io/butchery/
  * 
