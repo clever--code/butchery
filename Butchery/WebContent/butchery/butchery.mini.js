@@ -2,9 +2,11 @@
  Butchery Copyright (c), The CleverCode Foundation All Rights Reserved.
  Available via the MIT or new BSD license or GNU General Public License.
  see: http://clever--code.github.io/butchery/
+ 
  RequireJS 2.1.8 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  Available via the MIT or new BSD license.
  see: http://github.com/jrburke/requirejs for details
+ 
  Date: 2013-10-08T17:58
 */
 (function(window){var N$=function(){var atributes={};try{atributes=arguments.length==1?document.querySelectorAll(arguments[0]):document.querySelectorAll("body")}catch(e){atributes=arguments[0]}var core=function(){this.constructor=arguments[0];this.obj=function(){if(constructor.length==undefined)return this.constructor;else if(constructor.length==1)return this.constructor[0];else[].map.call(this.constructor,function(obj){arguments[0](obj)})};this.html=function(){if(constructor.length==undefined)if(arguments.length==
