@@ -1,11 +1,11 @@
-define(["../dao/YorAppDAO"], function(YorAppDAO){
+define(["../dao/YourAppDAO"], function(YourAppDAO){
 	var _this = {
 			
 			/**
 			 * Example list of business
 			 */
 			getExempleList : function(){
-				YorAppDAO.getExempleList(function(dataTable){
+				YourAppDAO.getExempleList(function(dataTable){
 					var table = '';
 					dataTable.forEach(function(exempleBean){
 						table += '<tr><td>' + exempleBean.getId() + '</td><td>' + exempleBean.getName() + '</td></tr>';

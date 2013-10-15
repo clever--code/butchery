@@ -1,4 +1,4 @@
-define(["../business/YorAppBO"], function(YorAppBO){
+define(["../business/YourAppBO"], function(YourAppBO){
 	var _this = {
 			
 			/**
@@ -40,7 +40,7 @@ define(["../business/YorAppBO"], function(YorAppBO){
 			 * Start Aplication
 			 */
 			getStart : function(){
-				YorAppBO.getStart(arguments);
+				YourAppBO.getStart(arguments);
 				_this.setEventListeners();
 			}
 			

@@ -1,4 +1,4 @@
-require(["../controller/YorAppController"],function (YorAppController){
+require(["../controller/YourAppController"],function (YourAppController){
 	"use strict";
 	var _this = {
 			
