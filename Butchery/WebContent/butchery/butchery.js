@@ -47,10 +47,24 @@
 							obj.innerHTML = value;
 						});
 					} else{
-						[].map.call(this.constructor, function(obj){
-							arguments[0](obj.innerHTML);
+						var data = [].map.call(this.constructor, function(obj){
+							return obj.innerHTML;
 						});
+						return (data.length === 1?data[0]:data);
 					}
+				}
+			};
+			
+			/*
+			 * Sets empty the html element
+			 * */
+			this.empty = function(){
+				if(constructor.length == undefined){
+					this.constructor.innerHTML = '';
+				} else {
+					[].map.call(this.constructor, function(obj){
+						obj.innerHTML = '';
+					});
 				}
 			};
 			
@@ -173,6 +187,9 @@
 				}
 			};
 			
+			/*
+			 * Set ou returns value
+			 * */
 			this.val = function(){
 				if(constructor.length == undefined){
 					return this.constructor.value;
@@ -184,6 +201,9 @@
 				}
 			};
 			
+			/*
+			 * XMLHttpRequest POST
+			 * */
 			this.post = function(){
 			    var client = new XMLHttpRequest(),
 			    callback = arguments[(arguments.length-1)];
@@ -201,6 +221,9 @@
 			    client.send(uri);
 			};
 			
+			/*
+			 * XMLHttpRequest GET
+			 * */
 			this.get = function(){
 			    var client = new XMLHttpRequest(),
 			    callback = arguments[(arguments.length-1)];
@@ -218,11 +241,15 @@
 			    client.send(uri);
 			};
 			
+			/*
+			 * XMLHttpRequest Load HTML data
+			 * */
 			this.load = function(url){
 			    var client = new XMLHttpRequest();
 			    var _constructor = this.constructor;
 			    client.open("GET", url, true);
 			    client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			    client.setRequestHeader("Cache-Control", "no-cache");
 			    client.onload = function() {
 			    	var response = this.response;
 					if(_constructor.length == undefined){
@@ -236,6 +263,9 @@
 			    client.send();
 			};
 			
+			/*
+			 * XMLHttpRequest ajax
+			 * */
 			this.ajax = function(config, callback){
 			    var client = new XMLHttpRequest();
 			    var uri = '';
