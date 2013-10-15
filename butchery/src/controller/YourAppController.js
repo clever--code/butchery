@@ -1,4 +1,4 @@
-define(["../business/YourAppBO"], function(YourAppBO){
+define(["../helpers/RESTfulHelper", "../business/YourAppBO"], function(RESTfulHelper, YourAppBO){
 	var _this = {
 			
 			/**
@@ -14,19 +14,10 @@ define(["../business/YourAppBO"], function(YourAppBO){
 			 * @param obj
 			 */
 			objReflection : function(obj){
-				var content = _this.parser(obj.target.dataset.controller);
-				_this.reflection({"controller":content.controller, "content":content});
-			},
-			
-			/**
-			 * @param value
-			 * @returns {___anonymous363_392}
-			 */
-			parser : function(value){
-				var content = value.replace('#','').split('/');
-				var args = '';
-				if(content.length > 2){ for(var i = 2; i<content.length; i++){ args += (!((i+1) === content.length))?content[i] + ',':content[i]; } }
-				return {"controller":content[0], "obj":content[1],"args":args};
+				var content = RESTfulHelper.parser(obj.target.dataset.controller);
+				if(content.controller != null){
+					_this.reflection({"controller":content.controller, "content":content});
+				}
 			},
 			
 			/**
@@ -41,9 +32,9 @@ define(["../business/YourAppBO"], function(YourAppBO){
 			 */
 			getStart : function(){
 				YourAppBO.getStart(arguments);
-				_this.setEventListeners();
 			}
 			
 	};
+	_this.setEventListeners();
 	return _this;
 });

@@ -1,4 +1,4 @@
-define(["../dao/YourAppDAO"], function(YourAppDAO){
+define(["../dao/YourAppDAO", "../views/YourAppView"], function(YourAppDAO, YourAppView){
 	var _this = {
 			
 			/**
@@ -8,7 +8,7 @@ define(["../dao/YourAppDAO"], function(YourAppDAO){
 				YourAppDAO.getExempleList(function(dataTable){
 					var table = '';
 					dataTable.forEach(function(exempleBean){
-						table += '<tr><td>' + exempleBean.getId() + '</td><td>' + exempleBean.getName() + '</td></tr>';
+						table += YourAppView.getLineTableDemo(exempleBean);
 					});
 					$('#content tbody').html(table);
 				});
@@ -19,9 +19,17 @@ define(["../dao/YourAppDAO"], function(YourAppDAO){
 			 * Example of business method
 			 */
 			getStart: function(){
-				$('#content').html('<table class="table table-hover"><thead><tr><th style="width:15px;">Id</th><th>Name</th></tr></thead><tbody></tbody></table>');
+				$('#content').html(YourAppView.getTableDemo());
+				$('#btnTarget').show();
 				console.log('Yor App Start...');
 				console.log(arguments[0]);
+			},
+			
+			/**
+			 * Demo Alert
+			 */
+			getAlert: function(){
+				alert('Yes!!!');
 			}
 	
 		};

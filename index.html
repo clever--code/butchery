@@ -7,7 +7,6 @@
 	<title>Butchery</title>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script data-main="butchery/src/controller/FrontController" src="butchery/butchery.mini.js"></script>
 </head>
 <body>
@@ -24,8 +23,8 @@
         </div>
     </nav>
 	<div class="container">
-		<hr>
-		<button class="btn" data-controller="YourAppBO/getExempleList/1/5">Teste</button>
+		<hr/>
+		<button class="btn" data-controller="YourAppBO/getExempleList/1/5" id="btnTarget" style="display: none;">Load Data</button>
 		<button class="btn" data-controller="YourAppBO/getAlert">Simple Alert</button>
 		<hr>
 		<div id="content"></div>
