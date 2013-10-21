@@ -12,19 +12,19 @@ require(["../helpers/RESTfulHelper", "../controller/YourAppController"],function
 			},
 			
 			/**
+			 * 
+			 */
+			locationHashChanged : function() {
+				var content = RESTfulHelper.parser(location.hash);
+				_this.reflection({"controller":content.controller, "content":content});
+			},
+			
+			/**
 			 * Management Requirements
 			 */
 			service : function(){
-				if((/#/g).test(document.URL)){
-					var content = RESTfulHelper.parser((document.URL.split("#")[(document.URL.split("#").length-1)]));
-					_this.reflection({"controller":content.controller, "content":content});
-				}
-				$('a').click(function(obj){
-					if((/#/g).test(obj.target.getAttribute('href'))){
-						var content = RESTfulHelper.parser(obj.target.getAttribute('href'));
-						_this.reflection({"controller":content.controller, "content":content});
-					}
-				});
+				window.addEventListener("hashchange", _this.locationHashChanged, false);
+				if(location.hash != ''){ _this.locationHashChanged(); }
 			}
 			
 	};
