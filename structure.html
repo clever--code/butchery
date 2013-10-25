@@ -161,48 +161,37 @@
 <h2>FrontController.js</h2>
 <form>
 <textarea id="codeFrontController" name="code">
-require(["../controller/YorAppController"],function (YorAppController){
-	"use strict";
-	var _this = {
-			
-			/**
-			 * @param obj
-			 */
-			reflection : function(rflt){
-				try {
-					(rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
-				} finally {}
-			},
-			
-			/**
-			 * @param value
-			 * @returns {___anonymous363_392}
-			 */
-			parser : function(value){
-				var content = value.replace('#','').split('/');
-				var args = '';
-				if(content.length > 2){ for(var i = 2; i<content.length; i++){ args += (!((i+1) === content.length))?content[i] + ',':content[i]; } }
-				return {"controller":content[0], "obj":content[1],"args":args};
-			},
-			
-			/**
-			 * Management Requirements
-			 */
-			service : function(){
-				if((/#/g).test(document.URL)){
-					var content = _this.parser((document.URL.split("#")[(document.URL.split("#").length-1)]));
-					_this.reflection({"controller":content.controller, "content":content});
-				}
-				$('a').click(function(obj){
-					if((/#/g).test(obj.target.getAttribute('href'))){
-						var content = _this.parser(obj.target.getAttribute('href'));
-						_this.reflection({"controller":content.controller, "content":content});
-					}
-				});
-			}
-			
-	};
-	_this.service();
+require(["../helpers/RESTfulHelper", "../controller/YourAppController"],function (RESTfulHelper, YourAppController){
+        "use strict";
+        var _this = {
+                        
+                        /**
+                         * @param obj
+                         */
+                        reflection : function(rflt){
+                                try {
+                                        (rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
+                                } finally {}
+                        },
+                        
+                        /**
+                         * 
+                         */
+                        locationHashChanged : function() {
+                                var content = RESTfulHelper.parser(location.hash);
+                                _this.reflection({"controller":content.controller, "content":content});
+                        },
+                        
+                        /**
+                         * Management Requirements
+                         */
+                        service : function(){
+                                window.addEventListener("hashchange", _this.locationHashChanged, false);
+                                if(location.hash != ''){ _this.locationHashChanged(); }
+                        }
+                        
+        };
+        _this.service();
 });
 </textarea>
 </form>
@@ -211,54 +200,45 @@ require(["../controller/YorAppController"],function (YorAppController){
 <h2>YorAppController.js</h2>
 <form>
 <textarea id="codeYorAppController" name="code">
-define(["../business/YorAppBO"], function(YorAppBO){
-	var _this = {
-			
-			/**
-			 * @param obj
-			 */
-			reflection : function(rflt){
-				try {
-					(rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
-				} finally {}
-			},
-			
-			/**
-			 * @param obj
-			 */
-			objReflection : function(obj){
-				var content = _this.parser(obj.target.dataset.controller);
-				_this.reflection({"controller":content.controller, "content":content});
-			},
-			
-			/**
-			 * @param value
-			 * @returns {___anonymous363_392}
-			 */
-			parser : function(value){
-				var content = value.replace('#','').split('/');
-				var args = '';
-				if(content.length > 2){ for(var i = 2; i<content.length; i++){ args += (!((i+1) === content.length))?content[i] + ',':content[i]; } }
-				return {"controller":content[0], "obj":content[1],"args":args};
-			},
-			
-			/**
-			 * Define addEventListeners in DashBoard
-			 */
-			setEventListeners : function(){
-				document.body.addEventListener('click',_this.objReflection);
-			},
+define(["../helpers/RESTfulHelper", "../business/YourAppBO"], function(RESTfulHelper, YourAppBO){
+        var _this = {
+                        
+                        /**
+                         * @param obj
+                         */
+                        reflection : function(rflt){
+                                try {
+                                        (rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
+                                } finally {}
+                        },
+                        
+                        /**
+                         * @param obj
+                         */
+                        objReflection : function(obj){
+                                var content = RESTfulHelper.parser(obj.target.dataset.controller);
+                                if(content.controller != null){
+                                        _this.reflection({"controller":content.controller, "content":content});
+                                }
+                        },
+                        
+                        /**
+                         * Define addEventListeners in DashBoard
+                         */
+                        setEventListeners : function(){
+                                document.body.addEventListener('click',_this.objReflection);
+                        },
 
-			/**
-			 * Start Aplication
-			 */
-			getStart : function(){
-				YorAppBO.getStart(arguments);
-				_this.setEventListeners();
-			}
-			
-	};
-	return _this;
+                        /**
+                         * Start Aplication
+                         */
+                        getStart : function(){
+                                YourAppBO.getStart(arguments);
+                        }
+                        
+        };
+        _this.setEventListeners();
+        return _this;
 });
 </textarea>
 </form>
