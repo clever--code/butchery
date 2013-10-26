@@ -9,6 +9,7 @@
  * 
  * Date: 2013-10-08T17:58
  */
+
 (function(window) {
 	var N$ = function(){
 		var atributes = {}; try { atributes = (arguments.length == 1)?document.querySelectorAll(arguments[0]):document.querySelectorAll('body'); } catch (e) { atributes = arguments[0]; }
@@ -31,7 +32,7 @@
 			};
 			
 			/*
-			 * Sets or returns the html element
+			 * Get the HTML contents of the first element in the set of matched elements or set the HTML contents of every matched element.
 			 * */
 			this.html = function(){
 				if(constructor.length == undefined){
@@ -56,7 +57,7 @@
 			};
 			
 			/*
-			 * Sets empty the html element
+			 * Remove all of the callbacks from a list.
 			 * */
 			this.empty = function(){
 				if(constructor.length == undefined){
@@ -69,7 +70,7 @@
 			};
 			
 			/*
-			 * Switch the view
+			 * Display or hide the matched elements by animating their opacity.
 			 * */
 			this.toggle = function(){
 				if(constructor.length == undefined){
@@ -82,16 +83,16 @@
 			};
 			
 			/*
-			 * Runs through the list of elements
+			 * Iterate over a jQuery object, executing a function for each matched element.
 			 * */
-			this.each = function(callback){
+			this.each = this.forEach = function(callback){
 				[].map.call(this.constructor, function(obj){
 					callback(obj);
 				});
 			};
 			
 			/*
-			 * Sets or returns an attribute
+			 * Get the value of an attribute for the first element in the set of matched elements or set one or more attributes for every matched element.
 			 * */
 			this.attr = function(){
 				var atribute;
@@ -114,7 +115,7 @@
 			};
 			
 			/*
-			 * Add a click listener
+			 * Bind an event handler to the click JavaScript event, or trigger that event on an element.
 			 * */
 			this.click = function(callback){
 				if(constructor.length == undefined){
@@ -127,7 +128,33 @@
 			};
 			
 			/*
-			 * Shows an element
+			 * Attach an event handler for all elements which match the current selector, now and in the future.
+			 * */
+			this.live = function(){
+				var innerAction = function(events, callback){
+					if(constructor.length == undefined){
+						this.constructor.addEventListener(events, callback);
+					} else {
+						[].map.call(this.constructor, function(obj){
+							obj.addEventListener(events, callback);
+						});
+					}
+				};
+				if(arguments.length <=2){
+					var events = arguments[0];
+					var callback = arguments[1];
+					innerAction(events, callback);
+				} else{
+					for(var i=0; i <(arguments.length-1); i++){
+						var events = arguments[i];
+						var callback = arguments[(arguments.length-1)];
+						innerAction(events, callback);
+					}
+				}
+			};
+			
+			/*
+			 * Display the matched elements.
 			 * */
 			this.show = function(){
 				if(constructor.length == undefined){
@@ -140,7 +167,27 @@
 			};
 			
 			/*
-			 * Hides an element
+			 * Display the matched elements by fading them to opaque.
+			 * */
+			this.fadeIn = function(){
+				var timer = (arguments[0] != undefined)?'2s':'0.4s';
+				if(constructor.length == undefined){
+					this.constructor.style.transition = timer;
+					this.style.WebkitTransition = 'opacity ' + timer;
+					this.style.MozTransition = 'opacity ' + timer;
+					this.constructor.style.opacity = '1';
+				} else{
+					[].map.call(this.constructor, function(obj){
+						obj.style.transition = timer;
+						obj.style.WebkitTransition = 'opacity ' + timer;
+						obj.style.MozTransition = 'opacity ' + timer;
+						obj.style.opacity = '1';
+					});
+				}
+			};
+			
+			/*
+			 * Hide the matched elements.
 			 * */
 			this.hide = function(){
 				if(constructor.length == undefined){
@@ -153,7 +200,27 @@
 			};
 			
 			/*
-			 * Returns a child
+			 * Hide the matched elements by fading them to transparent.
+			 * */
+			this.fadeOut = function(){
+				var timer = (arguments[0] != undefined)?'2s':'0.4s';
+				if(constructor.length == undefined){
+					this.constructor.style.transition = timer;
+					this.style.WebkitTransition = 'opacity ' + timer;
+					this.style.MozTransition = 'opacity ' + timer;
+					this.constructor.style.opacity = '0';
+				} else{
+					[].map.call(this.constructor, function(obj){
+						obj.style.transition = timer;
+						obj.style.WebkitTransition = 'opacity ' + timer;
+						obj.style.MozTransition = 'opacity ' + timer;
+						obj.style.opacity = '0';
+					});
+				}
+			};
+			
+			/*
+			 * Get the parent of each element in the current set of matched elements, optionally filtered by a selector.
 			 * */
 			this.parent = function(){
 				if(constructor.length == undefined){
@@ -178,6 +245,12 @@
 					case 'PieChart':
 						new google.visualization.PieChart(this.constructor[0]).draw(data, options);
 						break;
+					case 'BarChart':
+						new google.visualization.BarChart(this.constructor[0]).draw(data, options);
+						break;
+					case 'ColumnChart':
+						new google.visualization.ColumnChart(this.constructor[0]).draw(data, options);
+						break;
 					case 'Table':
 						new google.visualization.Table(this.constructor[0]).draw(data, options);
 						break;
@@ -188,7 +261,7 @@
 			};
 			
 			/*
-			 * Set ou returns value
+			 * Get the current value of the first element in the set of matched elements or set the value of every matched element.
 			 * */
 			this.val = function(){
 				if(constructor.length == undefined){
@@ -202,6 +275,7 @@
 			};
 			
 			/*
+			 * Load data from the server using a HTTP POST request.
 			 * XMLHttpRequest POST
 			 * */
 			this.post = function(){
@@ -222,6 +296,7 @@
 			};
 			
 			/*
+			 * Retrieve the DOM elements matched by the jQuery object.
 			 * XMLHttpRequest GET
 			 * */
 			this.get = function(){
@@ -242,12 +317,14 @@
 			};
 			
 			/*
+			 * Load data from the server and place the returned HTML into the matched element.
 			 * XMLHttpRequest Load HTML data
 			 * */
-			this.load = function(url){
+			this.load = function(){
+				var args = arguments;
 			    var client = new XMLHttpRequest();
 			    var _constructor = this.constructor;
-			    client.open("GET", url, true);
+			    client.open("GET", args[0], true);
 			    client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			    client.setRequestHeader("Cache-Control", "no-cache");
 			    client.onload = function() {
@@ -259,11 +336,15 @@
 							obj.innerHTML = response;
 						});
 					}
+					if(args.length == 2){
+						args[1]();
+					}
 			    };
 			    client.send();
 			};
 			
 			/*
+			 * Perform an asynchronous HTTP (Ajax) request.
 			 * XMLHttpRequest ajax
 			 * */
 			this.ajax = function(config, callback){
@@ -287,13 +368,85 @@
 			    client.send(uri);
 			};
 			
+			/*
+			 * Bind an event handler to the scroll JavaScript event, or trigger that event on an element.
+			 * Scroll link
+			 * */
+			this.scroll = function() {
+				if(constructor.length == undefined){
+					this.constructor.scrollIntoView();
+				} else{
+					[].map.call(this.constructor, function(obj){
+						obj.scrollIntoView();
+					});
+				}
+			};
+			
+			/*
+			 * Adds the specified class(es) to each of the set of matched elements.
+			 * */
+			this.addClass = function(data) {
+				if(constructor.length == undefined){
+					this.constructor.className += data;
+				} else{
+					[].map.call(this.constructor, function(obj){
+						obj.constructor.className += data;
+					});
+				}
+			};
+			
+			/*
+			 * Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
+			 * */
+			this.removeClass = function(data){
+				if(constructor.length == undefined){
+					var current = obj.constructor.className;
+					this.constructor.className = current.replace(data,'');
+				} else{
+					[].map.call(this.constructor, function(obj){
+						var current = obj.constructor.className;
+						obj.constructor.className = current.replace(data,'');
+					});
+				}
+			};
+			
+			/*
+			 * Selects all elements that are the last child of their parent.
+			 * */
+			this.lastChild = function(data){
+				if(constructor.length == undefined){
+					return this.constructor.lastChild;
+				} else{
+					return [].map.call(this.constructor, function(obj){
+						return obj.constructor.lastChild;
+					});
+				}
+			};
+			
+			/*
+			 * The number of elements in the jQuery object.
+			 * */
+			this.length = function(data){
+				if(constructor.length == undefined){
+					return undefined;
+				} else{
+					return this.constructor.length;
+				}
+			};
+			
+			/*
+			 * checks if this online
+			 * */
+			this.onLine = function(){
+				return window.navigator.onLine;
+			};
+			
 			return this;
 		};
 		return core(atributes);
 	};
 	window.$ = window.$i = window.N$ = window.$b = window.iQuery = window.NQuery = window.butchery = N$;
 })(window);
-
 
 
 
