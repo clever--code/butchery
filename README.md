@@ -1,7 +1,7 @@
-butchery
+Butchery Js
 ========
 
-Butchery Js
+Normalized JavaScript
 ***
 
 > What is Butchery Js?
