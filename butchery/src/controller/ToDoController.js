@@ -1,4 +1,4 @@
-define(["../helpers/RESTfulHelper", "../business/YourAppBO"], function(RESTfulHelper, YourAppBO){
+define(["../helpers/RESTfulHelper", "../business/ToDoBO"], function(RESTfulHelper, ToDoBO){
 	var _this = {
 			
 			/**
@@ -31,10 +31,32 @@ define(["../helpers/RESTfulHelper", "../business/YourAppBO"], function(RESTfulHe
 			 * Start Aplication
 			 */
 			getStart : function(){
-				YourAppBO.getStart(arguments);
+				ToDoBO.getStart(arguments);
+			},
+			
+			/**
+			 * Get List
+			 */
+			getToDoList : function(){
+				ToDoBO.getToDoList(arguments);
+			},
+			
+			/**
+			 * Get Urgent List
+			 */
+			getUrgent : function(){
+				ToDoBO.getUrgent(arguments);
+			},
+			
+			/**
+			 * Get Cancelled List
+			 */
+			getCancelled : function(){
+				ToDoBO.getCancelled(arguments);
 			}
 			
 	};
 	_this.setEventListeners();
+	_this.getStart();
 	return _this;
 });

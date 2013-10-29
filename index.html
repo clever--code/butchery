@@ -4,29 +4,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="CleverCode">
 	<meta name="description" content="Normalized JavaScript">
-	<title>Butchery</title>
+	<title>ToDOList</title>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-	<script data-main="butchery/src/controller/FrontController" src="butchery/butchery.mini.js"></script>
+	<script data-main="butchery/src/controller/FrontController" src="butchery/butchery.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Butchery Js</a>
+          <a class="navbar-brand">Butchery ToDOList</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex8-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li><a href="#YourAppController/getStart">getStart</a></li>
-            <li><a href="#YourAppController/getStart/5">getStart 5</a></li>
+            <li class="active" id="menuAllEvents"><a href="#ToDoController/getToDoList">All Events</a></li>
+            <li id="menuUrgent"><a href="#ToDoController/getUrgent">Urgent</a></li>
+            <li id="menuCancelled"><a href="#ToDoController/getCancelled">Cancelled</a></li>
           </ul>
         </div>
     </nav>
 	<div class="container">
-		<hr/>
-		<button class="btn" data-controller="YourAppBO/getExempleList/1/5" id="btnTarget" style="display: none;">Load Data</button>
-		<button class="btn" data-controller="YourAppBO/getAlert">Simple Alert</button>
-		<hr/>
 		<div id="content"></div>
 	</div>
 </body>

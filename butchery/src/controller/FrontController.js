@@ -1,4 +1,4 @@
-require(["../helpers/RESTfulHelper", "../controller/YourAppController"],function (RESTfulHelper, YourAppController){
+require(["../helpers/RESTfulHelper", "../controller/ToDoController"],function (RESTfulHelper, ToDoController){
 	"use strict";
 	var _this = {
 			
@@ -6,17 +6,16 @@ require(["../helpers/RESTfulHelper", "../controller/YourAppController"],function
 			 * @param obj
 			 */
 			reflection : function(rflt){
-				try {
-					(rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');');
-				} finally {}
+				try { (rflt.content.length == 1)?eval(rflt.controller + '.' + rflt.content.obj + '();'):eval(rflt.controller + '.' + rflt.content.obj + '(' + rflt.content.args + ');'); } finally {}
 			},
 			
 			/**
 			 * 
 			 */
-			locationHashChanged : function() {
+			locationHashChanged : function(event) {
 				var content = RESTfulHelper.parser(location.hash);
 				_this.reflection({"controller":content.controller, "content":content});
+				try { event.preventDefault(); } catch (e) {}
 			},
 			
 			/**
