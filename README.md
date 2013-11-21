@@ -11,6 +11,7 @@ Model layer structure in JavaScript prepared to work with RESTFul, IndexedDB and
 * business
 * controller
 * dao
+* services
 * helpers
 * models
 * views
