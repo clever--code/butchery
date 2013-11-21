@@ -1,4 +1,4 @@
-require(["../helpers/RESTfulHelper", "../controller/ToDoController"],function (RESTfulHelper, ToDoController){
+butchery(["../helpers/RESTfulHelper", "../controller/ToDoController"],function (RESTfulHelper, ToDoController){
 	"use strict";
 	var _this = {
 			

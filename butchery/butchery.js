@@ -1,470 +1,20 @@
-/** vim: et:ts=4:sw=4:sts=4
- * Butchery (Independence Query Library) vBeta
- * http://clevercode.com.br/
- * Copyright 2012 CleverCode Foundation
- * 
- * @license Butchery Copyright (c), The CleverCode Foundation All Rights Reserved.
- * Available via the MIT or new BSD license or GNU General Public License.
- * see: http://clever--code.github.io/butchery/
- * 
- * Date: 2013-10-08T17:58
- */
-
-(function(window) {
-        var N$ = function(){
-                var atributes = {}; try { atributes = (arguments.length == 1)?document.querySelectorAll(arguments[0]):document.querySelectorAll('body'); } catch (e) { atributes = arguments[0]; }
-                var core = function(){
-                        this.constructor = arguments[0];
-                        
-                        /*
-                         * returns the object
-                         * */
-                        this.obj = function(){
-                                if(constructor.length == undefined){
-                                        return this.constructor;
-                                } else if(constructor.length == 1){
-                                        return this.constructor[0];
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                arguments[0](obj);
-                                        });                                
-                                }
-                        };
-                        
-                        /*
-                         * Get the HTML contents of the first element in the set of matched elements or set the HTML contents of every matched element.
-                         * */
-                        this.html = function(){
-                                if(constructor.length == undefined){
-                                        if(arguments.length == 1){
-                                                this.constructor.innerHTML = arguments[0];
-                                        } else{
-                                                return this.constructor.innerHTML;
-                                        }
-                                } else {
-                                        if(arguments.length == 1){
-                                                var value = arguments[0];
-                                                [].map.call(this.constructor, function(obj){
-                                                        obj.innerHTML = value;
-                                                });
-                                        } else{
-                                                var data = [].map.call(this.constructor, function(obj){
-                                                        return obj.innerHTML;
-                                                });
-                                                return (data.length === 1?data[0]:data);
-                                        }
-                                }
-                        };
-                        
-                        /*
-                         * Remove all of the callbacks from a list.
-                         * */
-                        this.empty = function(){
-                                if(constructor.length == undefined){
-                                        this.constructor.innerHTML = '';
-                                } else {
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.innerHTML = '';
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Display or hide the matched elements by animating their opacity.
-                         * */
-                        this.toggle = function(){
-                                if(constructor.length == undefined){
-                                        this.constructor.style.display = (this.constructor.style.display === '')?'none':((this.constructor.style.display === 'none')?'inline-block':'none');
-                                } else {
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.style.display = (obj.style.display === '')?'none':((obj.style.display === 'none')?'inline-block':'none');
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Iterate over a jQuery object, executing a function for each matched element.
-                         * */
-                        this.each = this.forEach = function(callback){
-                                [].map.call(this.constructor, function(obj){
-                                        callback(obj);
-                                });
-                        };
-                        
-                        /*
-                         * Get the value of an attribute for the first element in the set of matched elements or set one or more attributes for every matched element.
-                         * */
-                        this.attr = function(){
-                                var atribute;
-                                if(constructor.length == undefined){
-                                        if(arguments.length == 2){
-                                                atribute = [arguments[0], arguments[1]];
-                                                this.constructor.setAttribute(atribute[0],atribute[1]);
-                                        } else{
-                                                return this.constructor.getAttribute(arguments[0]);
-                                        }
-                                } else{
-                                        if(arguments.length == 2){
-                                                atribute = [arguments[0], arguments[1]];
-                                                [].map.call(this.constructor, function(obj){ obj.setAttribute(atribute[0],atribute[1]); });
-                                        } else{
-                                                atribute = arguments[0];
-                                                return [].map.call(this.constructor, function(obj){ return obj.getAttribute(atribute); });
-                                        }
-                                }
-                        };
-                        
-                        /*
-                         * Bind an event handler to the “click” JavaScript event, or trigger that event on an element.
-                         * */
-                        this.click = function(callback){
-                                if(constructor.length == undefined){
-                                        this.constructor.addEventListener('click', callback);
-                                } else {
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.addEventListener('click', callback);
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Attach an event handler for all elements which match the current selector, now and in the future.
-                         * */
-                        this.live = function(){
-                                var innerAction = function(events, callback){
-                                        if(constructor.length == undefined){
-                                                this.constructor.addEventListener(events, callback);
-                                        } else {
-                                                [].map.call(this.constructor, function(obj){
-                                                        obj.addEventListener(events, callback);
-                                                });
-                                        }
-                                };
-                                if(arguments.length <=2){
-                                        var events = arguments[0];
-                                        var callback = arguments[1];
-                                        innerAction(events, callback);
-                                } else{
-                                        for(var i=0; i <(arguments.length-1); i++){
-                                                var events = arguments[i];
-                                                var callback = arguments[(arguments.length-1)];
-                                                innerAction(events, callback);
-                                        }
-                                }
-                        };
-                        
-                        /*
-                         * Display the matched elements.
-                         * */
-                        this.show = function(){
-                                if(constructor.length == undefined){
-                                        this.constructor.style.display = 'inline-block';
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.style.display = 'inline-block';
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Display the matched elements by fading them to opaque.
-                         * */
-                        this.fadeIn = function(){
-                                var timer = (arguments[0] != undefined)?'2s':'0.4s';
-                                if(constructor.length == undefined){
-                                        this.constructor.style.transition = timer;
-                                        this.style.WebkitTransition = 'opacity ' + timer;
-                                        this.style.MozTransition = 'opacity ' + timer;
-                                        this.constructor.style.opacity = '1';
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.style.transition = timer;
-                                                obj.style.WebkitTransition = 'opacity ' + timer;
-                                                obj.style.MozTransition = 'opacity ' + timer;
-                                                obj.style.opacity = '1';
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Hide the matched elements.
-                         * */
-                        this.hide = function(){
-                                if(constructor.length == undefined){
-                                        this.constructor.style.display = 'none';
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.style.display = 'none';
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Hide the matched elements by fading them to transparent.
-                         * */
-                        this.fadeOut = function(){
-                                var timer = (arguments[0] != undefined)?'2s':'0.4s';
-                                if(constructor.length == undefined){
-                                        this.constructor.style.transition = timer;
-                                        this.style.WebkitTransition = 'opacity ' + timer;
-                                        this.style.MozTransition = 'opacity ' + timer;
-                                        this.constructor.style.opacity = '0';
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.style.transition = timer;
-                                                obj.style.WebkitTransition = 'opacity ' + timer;
-                                                obj.style.MozTransition = 'opacity ' + timer;
-                                                obj.style.opacity = '0';
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Get the parent of each element in the current set of matched elements, optionally filtered by a selector.
-                         * */
-                        this.parent = function(){
-                                if(constructor.length == undefined){
-                                        return this.constructor.parentNode;
-                                } else{
-                                        return this.constructor[0].parentNode;
-                                }
-                        };
-                        
-                        /*
-                         * Renders a google chart
-                         * @type LineChart, PieChart, Table
-                         * @dataTable [[],[]]
-                         * @options {}
-                         * */
-                        this.googleChart = function(type, dataTable, options){
-                                var data = google.visualization.arrayToDataTable(dataTable);
-                                switch (type) {
-                                        case 'LineChart':
-                                                new google.visualization.LineChart(this.constructor[0]).draw(data, options);
-                                                break;
-                                        case 'PieChart':
-                                                new google.visualization.PieChart(this.constructor[0]).draw(data, options);
-                                                break;
-                                        case 'BarChart':
-                                                new google.visualization.BarChart(this.constructor[0]).draw(data, options);
-                                                break;
-                                        case 'ColumnChart':
-                                                new google.visualization.ColumnChart(this.constructor[0]).draw(data, options);
-                                                break;
-                                        case 'Table':
-                                                new google.visualization.Table(this.constructor[0]).draw(data, options);
-                                                break;
-                                        default:
-                                                new google.visualization.PieChart(this.constructor[0]).draw(data, options);
-                                                break;
-                                }
-                        };
-                        
-                        /*
-                         * Get the current value of the first element in the set of matched elements or set the value of every matched element.
-                         * */
-                        this.val = function(){
-                                if(constructor.length == undefined){
-                                        return this.constructor.value;
-                                } else{
-                                        var data = [].map.call(this.constructor, function(obj){
-                                                return obj.value;
-                                        });
-                                        return (data.length === 1?data[0]:data);
-                                }
-                        };
-                        
-                        /*
-                         * Load data from the server using a HTTP POST request.
-                         * XMLHttpRequest POST
-                         * */
-                        this.post = function(){
-                            var client = new XMLHttpRequest(),
-                            callback = arguments[(arguments.length-1)];
-                            client.open("POST", arguments[0], true);
-                            client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                            client.onload = function() {
-                                    callback(eval('[' + this.response + ']')[0]);
-                            };
-                            var uri = '';
-                            if(arguments.length == 3){
-                                        for (key in arguments[1]) {
-                                            uri += encodeURIComponent(key) + '=' + encodeURIComponent(arguments[1][key]) + '&';
-                                        }
-                            }
-                            client.send(uri);
-                        };
-                        
-                        /*
-                         * Retrieve the DOM elements matched by the jQuery object.
-                         * XMLHttpRequest GET
-                         * */
-                        this.get = function(){
-                            var client = new XMLHttpRequest(),
-                            callback = arguments[(arguments.length-1)];
-                            client.open("GET", arguments[0], true);
-                            client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                            client.onload = function() {
-                                    callback(eval('[' + this.response + ']')[0]);
-                            };
-                            var uri = '';
-                            if(arguments.length == 3){
-                                    for (key in arguments[1]) {
-                                            uri += encodeURIComponent(key) + '=' + encodeURIComponent(arguments[1][key]) + '&';
-                                    }
-                            }
-                            client.send(uri);
-                        };
-                        
-                        /*
-                         * Load data from the server and place the returned HTML into the matched element.
-                         * XMLHttpRequest Load HTML data
-                         * */
-                        this.load = function(){
-                                var args = arguments;
-                            var client = new XMLHttpRequest();
-                            var _constructor = this.constructor;
-                            client.open("GET", args[0], true);
-                            client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                            client.setRequestHeader("Cache-Control", "no-cache");
-                            client.onload = function() {
-                                    var response = this.response;
-                                        if(_constructor.length == undefined){
-                                                _constructor.innerHTML = response;
-                                        } else {
-                                                [].map.call(_constructor, function(obj){
-                                                        obj.innerHTML = response;
-                                                });
-                                        }
-                                        if(args.length == 2){
-                                                args[1]();
-                                        }
-                            };
-                            client.send();
-                        };
-                        
-                        /*
-                         * Perform an asynchronous HTTP (Ajax) request.
-                         * XMLHttpRequest ajax
-                         * */
-                        this.ajax = function(config, callback){
-                            var client = new XMLHttpRequest();
-                            var uri = '';
-                            client.open(config.type, config.url, ((config.async != undefined)?config.async:false));
-                            client.setRequestHeader("Content-type", ((config.contentType != undefined)?config.contentType:"application/x-www-form-urlencoded"));
-                            client.setRequestHeader("Cache-Control", ((config.CacheControl != undefined)?config.CacheControl:"no-cache"));
-                            client.onreadystatechange = function(){
-                                    if(this.readyState == 4){
-                                            if(this.status == 200){
-                                                    (config.dataType === 'json')?(callback(eval('[' + this.response + ']')[0])):callback(this.response);
-                                            } else{
-                                                    callback({"error":this.statusText});
-                                            }
-                                    }
-                            };
-                            for (key in config.data) {
-                                    uri += encodeURIComponent(key) + '=' + encodeURIComponent(config.data[key]) + '&';
-                            }
-                            client.send(uri);
-                        };
-                        
-                        /*
-                         * Bind an event handler to the “scroll” JavaScript event, or trigger that event on an element.
-                         * Scroll link
-                         * */
-                        this.scroll = function() {
-                                if(constructor.length == undefined){
-                                        this.constructor.scrollIntoView();
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.scrollIntoView();
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Adds the specified class(es) to each of the set of matched elements.
-                         * */
-                        this.addClass = function(data) {
-                                if(constructor.length == undefined){
-                                        this.constructor.className += data;
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                obj.className += data;
-                                        });
-                                }
-                        };
-                        
-                        /*
-                         * Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
-                         * */
-                        this.removeClass = function(data){
-                                if(constructor.length == undefined){
-                                        var current = this.constructor.className;
-                                        this.constructor.className = current.replace(data,'');
-                                } else{
-                                        [].map.call(this.constructor, function(obj){
-                                                var current = obj.className;
-                                                obj.className = current.replace(data,'');
-                                        });
-                                }
-                        };
-                        
-            			/*
-            			 * Selects all elements that are the last child of their parent.
-            			 * */
-            			this.lastChild = function(data){
-            				if(constructor.length == undefined){
-            					return this.constructor.lastChild;
-            				} else{
-            					return [].map.call(this.constructor, function(obj){
-            						return obj.lastChild;
-            					});
-            				}
-            			};
-                        
-                        /*
-                         * The number of elements in the jQuery object.
-                         * */
-                        this.length = function(data){
-                                if(constructor.length == undefined){
-                                        return undefined;
-                                } else{
-                                        return this.constructor.length;
-                                }
-                        };
-                        
-                        /*
-                         * checks if this online
-                         * */
-                        this.onLine = function(){
-                                return window.navigator.onLine;
-                        };
-                        
-                        return this;
-                };
-                return core(atributes);
-        };
-        window.$ = window.$i = window.N$ = window.$b = window.iQuery = window.NQuery = window.butchery = N$;
-})(window);
-
-
-
-/** vim: et:ts=4:sw=4:sts=4
- * @license RequireJS 2.1.8 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: http://github.com/jrburke/requirejs for details
- */
-//Not using strict: uneven strict support in browsers, #392, and causes
-//problems with requirejs.exec()/transpiler plugins that may not be strict.
-/*jslint regexp: true, nomen: true, sloppy: true */
-/*global window, navigator, document, importScripts, setTimeout, opera */
+/*
+ Butchery Copyright (c), The CleverCode Foundation All Rights Reserved.
+ Available via the MIT or new BSD license or GNU General Public License.
+ see: http://clever--code.github.io/butchery/
+ 
+ RequireJS 2.1.8 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
+ Available via the MIT or new BSD license.
+ see: http://github.com/jrburke/requirejs for details
+ 
+ Date: 2013-10-08T17:58
+*/
 
 var requirejs, require, define;
 (function (global) {
     var req, s, head, baseElement, dataMain, src,
         interactiveScript, currentlyAddingScript, mainScript, subPath,
-        version = '2.1.8',
+        version = '2.1.9+',
         commentRegExp = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg,
         cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
         jsSuffixRegExp = /\.js$/,
@@ -474,7 +24,7 @@ var requirejs, require, define;
         hasOwn = op.hasOwnProperty,
         ap = Array.prototype,
         apsp = ap.splice,
-        isBrowser = !!(typeof window !== 'undefined' && navigator && window.document),
+        isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document),
         isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
         //PS3 indicates loaded and complete, but need to wait for complete
         //specifically. Sequence is 'loading', 'loaded', execution,
@@ -499,9 +49,9 @@ var requirejs, require, define;
     }
 
     /**
-     * Helper function for iterating over an array. If the func returns
-     * a true value, it will break out of the loop.
-     */
+* Helper function for iterating over an array. If the func returns
+* a true value, it will break out of the loop.
+*/
     function each(ary, func) {
         if (ary) {
             var i;
@@ -514,9 +64,9 @@ var requirejs, require, define;
     }
 
     /**
-     * Helper function for iterating over an array backwards. If the func
-     * returns a true value, it will break out of the loop.
-     */
+* Helper function for iterating over an array backwards. If the func
+* returns a true value, it will break out of the loop.
+*/
     function eachReverse(ary, func) {
         if (ary) {
             var i;
@@ -537,10 +87,10 @@ var requirejs, require, define;
     }
 
     /**
-     * Cycles over properties in an object and calls a function for each
-     * property value. If the function returns a truthy value, then the
-     * iteration is stopped.
-     */
+* Cycles over properties in an object and calls a function for each
+* property value. If the function returns a truthy value, then the
+* iteration is stopped.
+*/
     function eachProp(obj, func) {
         var prop;
         for (prop in obj) {
@@ -553,9 +103,9 @@ var requirejs, require, define;
     }
 
     /**
-     * Simple function to mix in properties from source into target,
-     * but only if target does not already have a property of the same name.
-     */
+* Simple function to mix in properties from source into target,
+* but only if target does not already have a property of the same name.
+*/
     function mixin(target, source, force, deepStringMixin) {
         if (source) {
             eachProp(source, function (value, prop) {
@@ -604,13 +154,13 @@ var requirejs, require, define;
     }
 
     /**
-     * Constructs an error with a pointer to an URL with more information.
-     * @param {String} id the error ID that maps to an ID on a web page.
-     * @param {String} message human readable error.
-     * @param {Error} [err] the original error, if there is one.
-     *
-     * @returns {Error}
-     */
+* Constructs an error with a pointer to an URL with more information.
+* @param {String} id the error ID that maps to an ID on a web page.
+* @param {String} message human readable error.
+* @param {Error} [err] the original error, if there is one.
+*
+* @returns {Error}
+*/
     function makeError(id, msg, err, requireModules) {
         var e = new Error(msg + '\nhttp://requirejs.org/docs/errors.html#' + id);
         e.requireType = id;
@@ -670,14 +220,14 @@ var requirejs, require, define;
             unnormalizedCounter = 1;
 
         /**
-         * Trims the . and .. from an array of path segments.
-         * It will keep a leading path segment if a .. will become
-         * the first path segment, to help with module name lookups,
-         * which act like paths, but can be remapped. But the end result,
-         * all paths that use this function should look normalized.
-         * NOTE: this method MODIFIES the input array.
-         * @param {Array} ary the array of path segments.
-         */
+* Trims the . and .. from an array of path segments.
+* It will keep a leading path segment if a .. will become
+* the first path segment, to help with module name lookups,
+* which act like paths, but can be remapped. But the end result,
+* all paths that use this function should look normalized.
+* NOTE: this method MODIFIES the input array.
+* @param {Array} ary the array of path segments.
+*/
         function trimDots(ary) {
             var i, part;
             for (i = 0; ary[i]; i += 1) {
@@ -703,15 +253,15 @@ var requirejs, require, define;
         }
 
         /**
-         * Given a relative module name, like ./something, normalize it to
-         * a real name that can be mapped to a path.
-         * @param {String} name the relative name
-         * @param {String} baseName a real name that the name arg is relative
-         * to.
-         * @param {Boolean} applyMap apply the map config to the value. Should
-         * only be done if this normalization is for a dependency ID.
-         * @returns {String} normalized name
-         */
+* Given a relative module name, like ./something, normalize it to
+* a real name that can be mapped to a path.
+* @param {String} name the relative name
+* @param {String} baseName a real name that the name arg is relative
+* to.
+* @param {Boolean} applyMap apply the map config to the value. Should
+* only be done if this normalization is for a dependency ID.
+* @returns {String} normalized name
+*/
         function normalize(name, baseName, applyMap) {
             var pkgName, pkgConfig, mapValue, nameParts, i, j, nameSegment,
                 foundMap, foundI, foundStarMap, starI,
@@ -825,7 +375,6 @@ var requirejs, require, define;
         function hasPathFallback(id) {
             var pathConfig = getOwn(config.paths, id);
             if (pathConfig && isArray(pathConfig) && pathConfig.length > 1) {
-                removeScript(id);
                 //Pop off the first array value, since it failed, and
                 //retry
                 pathConfig.shift();
@@ -849,20 +398,20 @@ var requirejs, require, define;
         }
 
         /**
-         * Creates a module mapping that includes plugin prefix, module
-         * name, and path. If parentModuleMap is provided it will
-         * also normalize the name via require.normalize()
-         *
-         * @param {String} name the module name
-         * @param {String} [parentModuleMap] parent module map
-         * for the module name, used to resolve relative names.
-         * @param {Boolean} isNormalized: is the ID already normalized.
-         * This is true if this call is done for a define() module ID.
-         * @param {Boolean} applyMap: apply the map config to the ID.
-         * Should only be true if this map is for a dependency.
-         *
-         * @returns {Object}
-         */
+* Creates a module mapping that includes plugin prefix, module
+* name, and path. If parentModuleMap is provided it will
+* also normalize the name via require.normalize()
+*
+* @param {String} name the module name
+* @param {String} [parentModuleMap] parent module map
+* for the module name, used to resolve relative names.
+* @param {Boolean} isNormalized: is the ID already normalized.
+* This is true if this call is done for a define() module ID.
+* @param {Boolean} applyMap: apply the map config to the ID.
+* Should only be true if this map is for a dependency.
+*
+* @returns {Object}
+*/
         function makeModuleMap(name, parentModuleMap, isNormalized, applyMap) {
             var url, pluginModule, suffix, nameParts,
                 prefix = null,
@@ -991,9 +540,9 @@ var requirejs, require, define;
         }
 
         /**
-         * Internal method to transfer globalQueue items to this context's
-         * defQueue.
-         */
+* Internal method to transfer globalQueue items to this context's
+* defQueue.
+*/
         function takeGlobalQueue() {
             //Push all the globalDefQueue items into the context's defQueue
             if (globalDefQueue.length) {
@@ -1001,7 +550,7 @@ var requirejs, require, define;
                 //local var ref to defQueue, so cannot just reassign the one
                 //on context.
                 apsp.apply(defQueue,
-                           [defQueue.length - 1, 0].concat(globalDefQueue));
+                           [defQueue.length, 0].concat(globalDefQueue));
                 globalDefQueue = [];
             }
         }
@@ -1038,7 +587,7 @@ var requirejs, require, define;
                             // at the main module.
                             c = pkg ? getOwn(config.config, mod.map.id + '/' + pkg.main) :
                                       getOwn(config.config, mod.map.id);
-                            return  c || {};
+                            return c || {};
                         },
                         exports: defined[mod.map.id]
                     });
@@ -1081,7 +630,7 @@ var requirejs, require, define;
         }
 
         function checkLoaded() {
-            var map, modId, err, usingPathFallback,
+            var err, usingPathFallback,
                 waitInterval = config.waitSeconds * 1000,
                 //It is possible to disable the wait interval by using waitSeconds of 0.
                 expired = waitInterval && (context.startTime + waitInterval) < new Date().getTime(),
@@ -1099,8 +648,8 @@ var requirejs, require, define;
 
             //Figure out the state of all the modules.
             eachProp(enabledRegistry, function (mod) {
-                map = mod.map;
-                modId = map.id;
+                var map = mod.map,
+                    modId = map.id;
 
                 //Skip things that are not enabled or in error state.
                 if (!mod.enabled) {
@@ -1178,9 +727,9 @@ var requirejs, require, define;
             this.depCount = 0;
 
             /* this.exports this.factory
-               this.depMaps = [],
-               this.enabled, this.fetched
-            */
+this.depMaps = [],
+this.enabled, this.fetched
+*/
         };
 
         Module.prototype = {
@@ -1279,9 +828,9 @@ var requirejs, require, define;
             },
 
             /**
-             * Checks if the module is ready to define itself, and if so,
-             * define it.
-             */
+* Checks if the module is ready to define itself, and if so,
+* define it.
+*/
             check: function () {
                 if (!this.enabled || this.enabling) {
                     return;
@@ -1308,7 +857,7 @@ var requirejs, require, define;
                         if (isFunction(factory)) {
                             //If there is an error listener, favor passing
                             //to that instead of throwing an error. However,
-                            //only do it for define()'d  modules. require
+                            //only do it for define()'d modules. require
                             //errbacks should not be called for failures in
                             //their callbacks (#699). However if a global
                             //onError is set, use that.
@@ -1638,11 +1187,11 @@ var requirejs, require, define;
         }
 
         /**
-         * Given an event from a script node, get the requirejs info from it,
-         * and then removes the event listeners on the node.
-         * @param {Event} evt
-         * @returns {Object}
-         */
+* Given an event from a script node, get the requirejs info from it,
+* and then removes the event listeners on the node.
+* @param {Event} evt
+* @returns {Object}
+*/
         function getScriptData(evt) {
             //Using currentTarget instead of target for Firefox 2.0's sake. Not
             //all old browsers will be supported, but this one was easy enough
@@ -1691,9 +1240,9 @@ var requirejs, require, define;
             onError: onError,
 
             /**
-             * Set a configuration for the context.
-             * @param {Object} cfg config object to integrate.
-             */
+* Set a configuration for the context.
+* @param {Object} cfg config object to integrate.
+*/
             configure: function (cfg) {
                 //Make sure the baseUrl ends in a slash.
                 if (cfg.baseUrl) {
@@ -1875,10 +1424,10 @@ var requirejs, require, define;
                     isBrowser: isBrowser,
 
                     /**
-                     * Converts a module name + .extension into an URL path.
-                     * *Requires* the use of a module name. It does not support using
-                     * plain URLs like nameToUrl.
-                     */
+* Converts a module name + .extension into an URL path.
+* *Requires* the use of a module name. It does not support using
+* plain URLs like nameToUrl.
+*/
                     toUrl: function (moduleNamePlusExt) {
                         var ext,
                             index = moduleNamePlusExt.lastIndexOf('.'),
@@ -1893,7 +1442,7 @@ var requirejs, require, define;
                         }
 
                         return context.nameToUrl(normalize(moduleNamePlusExt,
-                                                relMap && relMap.id, true), ext,  true);
+                                                relMap && relMap.id, true), ext, true);
                     },
 
                     defined: function (id) {
@@ -1916,9 +1465,20 @@ var requirejs, require, define;
                         var map = makeModuleMap(id, relMap, true),
                             mod = getOwn(registry, id);
 
+                        removeScript(id);
+
                         delete defined[id];
                         delete urlFetched[map.url];
                         delete undefEvents[id];
+
+                        //Clean queued defines too. Go backwards
+                        //in array so that the splices do not
+                        //mess up the iteration.
+                        eachReverse(defQueue, function(args, i) {
+                            if(args[0] === id) {
+                                defQueue.splice(i, 1);
+                            }
+                        });
 
                         if (mod) {
                             //Hold on to listeners in case the
@@ -1937,11 +1497,11 @@ var requirejs, require, define;
             },
 
             /**
-             * Called to enable a module if it is still in the registry
-             * awaiting enablement. A second arg, parent, the parent module,
-             * is passed in for context, when this method is overriden by
-             * the optimizer. Not shown here to keep code compact.
-             */
+* Called to enable a module if it is still in the registry
+* awaiting enablement. A second arg, parent, the parent module,
+* is passed in for context, when this method is overriden by
+* the optimizer. Not shown here to keep code compact.
+*/
             enable: function (depMap) {
                 var mod = getOwn(registry, depMap.id);
                 if (mod) {
@@ -1950,11 +1510,11 @@ var requirejs, require, define;
             },
 
             /**
-             * Internal method used by environment adapters to complete a load event.
-             * A load event could be a script load or just a load pass from a synchronous
-             * load call.
-             * @param {String} moduleName the name of the module to potentially complete.
-             */
+* Internal method used by environment adapters to complete a load event.
+* A load event could be a script load or just a load pass from a synchronous
+* load call.
+* @param {String} moduleName the name of the module to potentially complete.
+*/
             completeLoad: function (moduleName) {
                 var found, args, mod,
                     shim = getOwn(config.shim, moduleName) || {},
@@ -2006,12 +1566,12 @@ var requirejs, require, define;
             },
 
             /**
-             * Converts a module name to a file path. Supports cases where
-             * moduleName may actually be just an URL.
-             * Note that it **does not** call normalize on the moduleName,
-             * it is assumed to have already been normalized. This is an
-             * internal API, not a public one. Use toUrl for the public API.
-             */
+* Converts a module name to a file path. Supports cases where
+* moduleName may actually be just an URL.
+* Note that it **does not** call normalize on the moduleName,
+* it is assumed to have already been normalized. This is an
+* internal API, not a public one. Use toUrl for the public API.
+*/
             nameToUrl: function (moduleName, ext, skipExt) {
                 var paths, pkgs, pkg, pkgPath, syms, i, parentModule, url,
                     parentPath;
@@ -2061,7 +1621,7 @@ var requirejs, require, define;
 
                     //Join the path parts together, then figure out if baseUrl is needed.
                     url = syms.join('/');
-                    url += (ext || (/\?/.test(url) || skipExt ? '' : '.js'));
+                    url += (ext || (/^data\:|\?/.test(url) || skipExt ? '' : '.js'));
                     url = (url.charAt(0) === '/' || url.match(/^[\w\+\.\-]+:/) ? '' : config.baseUrl) + url;
                 }
 
@@ -2077,22 +1637,22 @@ var requirejs, require, define;
             },
 
             /**
-             * Executes a module callback function. Broken out as a separate function
-             * solely to allow the build system to sequence the files in the built
-             * layer in the right sequence.
-             *
-             * @private
-             */
+* Executes a module callback function. Broken out as a separate function
+* solely to allow the build system to sequence the files in the built
+* layer in the right sequence.
+*
+* @private
+*/
             execCb: function (name, callback, args, exports) {
                 return callback.apply(exports, args);
             },
 
             /**
-             * callback for script loads, used to check status of loading.
-             *
-             * @param {Event} evt the event from the browser for the script
-             * that was loaded.
-             */
+* callback for script loads, used to check status of loading.
+*
+* @param {Event} evt the event from the browser for the script
+* that was loaded.
+*/
             onScriptLoad: function (evt) {
                 //Using currentTarget instead of target for Firefox 2.0's sake. Not
                 //all old browsers will be supported, but this one was easy enough
@@ -2110,8 +1670,8 @@ var requirejs, require, define;
             },
 
             /**
-             * Callback for script errors.
-             */
+* Callback for script errors.
+*/
             onScriptError: function (evt) {
                 var data = getScriptData(evt);
                 if (!hasPathFallback(data.id)) {
@@ -2125,19 +1685,19 @@ var requirejs, require, define;
     }
 
     /**
-     * Main entry point.
-     *
-     * If the only argument to require is a string, then the module that
-     * is represented by that string is fetched for the appropriate context.
-     *
-     * If the first argument is an array, then it will be treated as an array
-     * of dependency string names to fetch. An optional function callback can
-     * be specified to execute when all of those dependencies are available.
-     *
-     * Make a local req variable to help Caja compliance (it assumes things
-     * on a require that are not standardized), and to give a short
-     * name for minification/local scope use.
-     */
+* Main entry point.
+*
+* If the only argument to require is a string, then the module that
+* is represented by that string is fetched for the appropriate context.
+*
+* If the first argument is an array, then it will be treated as an array
+* of dependency string names to fetch. An optional function callback can
+* be specified to execute when all of those dependencies are available.
+*
+* Make a local req variable to help Caja compliance (it assumes things
+* on a require that are not standardized), and to give a short
+* name for minification/local scope use.
+*/
     req = requirejs = function (deps, callback, errback, optional) {
 
         //Find the right context, use default
@@ -2175,26 +1735,26 @@ var requirejs, require, define;
     };
 
     /**
-     * Support require.config() to make it easier to cooperate with other
-     * AMD loaders on globally agreed names.
-     */
+* Support require.config() to make it easier to cooperate with other
+* AMD loaders on globally agreed names.
+*/
     req.config = function (config) {
         return req(config);
     };
 
     /**
-     * Execute something after the current tick
-     * of the event loop. Override for other envs
-     * that have a better solution than setTimeout.
-     * @param  {Function} fn function to execute later.
-     */
+* Execute something after the current tick
+* of the event loop. Override for other envs
+* that have a better solution than setTimeout.
+* @param {Function} fn function to execute later.
+*/
     req.nextTick = typeof setTimeout !== 'undefined' ? function (fn) {
         setTimeout(fn, 4);
     } : function (fn) { fn(); };
 
     /**
-     * Export require as a global, but only if it does not already exist.
-     */
+* Export require as a global, but only if it does not already exist.
+*/
     if (!require) {
         require = req;
     }
@@ -2240,15 +1800,15 @@ var requirejs, require, define;
     }
 
     /**
-     * Any errors that require explicitly generates will be passed to this
-     * function. Intercept/override it if you want custom error handling.
-     * @param {Error} err the error object.
-     */
+* Any errors that require explicitly generates will be passed to this
+* function. Intercept/override it if you want custom error handling.
+* @param {Error} err the error object.
+*/
     req.onError = defaultOnError;
 
     /**
-     * Creates the node for the load command. Only used in browser envs.
-     */
+* Creates the node for the load command. Only used in browser envs.
+*/
     req.createNode = function (config, moduleName, url) {
         var node = config.xhtml ?
                 document.createElementNS('http://www.w3.org/1999/xhtml', 'html:script') :
@@ -2260,14 +1820,14 @@ var requirejs, require, define;
     };
 
     /**
-     * Does the request to load a module for the browser case.
-     * Make this a separate function to allow other environments
-     * to override it.
-     *
-     * @param {Object} context the require context to find state.
-     * @param {String} moduleName the name of the module.
-     * @param {Object} url the URL to the module.
-     */
+* Does the request to load a module for the browser case.
+* Make this a separate function to allow other environments
+* to override it.
+*
+* @param {Object} context the require context to find state.
+* @param {String} moduleName the name of the module.
+* @param {Object} url the URL to the module.
+*/
     req.load = function (context, moduleName, url) {
         var config = (context && context.config) || {},
             node;
@@ -2370,7 +1930,7 @@ var requirejs, require, define;
     }
 
     //Look for a data-main script attribute, which could also adjust the baseUrl.
-    if (isBrowser) {
+    if (isBrowser && !cfg.skipDataMain) {
         //Figure out baseUrl. Get it from the script tag with require.js in it.
         eachReverse(scripts(), function (script) {
             //Set the 'head' where we can append children by
@@ -2393,7 +1953,7 @@ var requirejs, require, define;
                     //baseUrl.
                     src = mainScript.split('/');
                     mainScript = src.pop();
-                    subPath = src.length ? src.join('/')  + '/' : './';
+                    subPath = src.length ? src.join('/') + '/' : './';
 
                     cfg.baseUrl = subPath;
                 }
@@ -2416,12 +1976,12 @@ var requirejs, require, define;
     }
 
     /**
-     * The function that handles definitions of modules. Differs from
-     * require() in that a string for the module should be the first argument,
-     * and the function to execute after dependencies are loaded should
-     * return a value to define the module corresponding to the first argument's
-     * name.
-     */
+* The function that handles definitions of modules. Differs from
+* require() in that a string for the module should be the first argument,
+* and the function to execute after dependencies are loaded should
+* return a value to define the module corresponding to the first argument's
+* name.
+*/
     define = function (name, deps, callback) {
         var node, context;
 
@@ -2490,11 +2050,11 @@ var requirejs, require, define;
 
 
     /**
-     * Executes the text. Normally just uses eval, but can be modified
-     * to use a better, environment-specific call. Only used for transpiling
-     * loader plugins, not for plain JS modules.
-     * @param {String} text the text to execute/evaluate.
-     */
+* Executes the text. Normally just uses eval, but can be modified
+* to use a better, environment-specific call. Only used for transpiling
+* loader plugins, not for plain JS modules.
+* @param {String} text the text to execute/evaluate.
+*/
     req.exec = function (text) {
         /*jslint evil: true */
         return eval(text);
@@ -2502,4 +2062,6 @@ var requirejs, require, define;
 
     //Set up with config info.
     req(cfg);
+    
+    butchery = require;
 }(this));
