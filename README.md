@@ -1,12 +1,12 @@
-Butchery Js
+[ Butchery Js + NodeJS ](beta)
 ========
 
-Normalized JavaScript
+Standards development in NodeJS layered
 ***
 
-> What is Butchery Js?
+> What is Butchery Js + NodeJS?
 
-Model layer structure in JavaScript prepared to work with RESTFul, IndexedDB and AMD
+Model structured in layers to NodeJS. The objective is to facilitate the development of web applications, ensuring the adequacy of MVC patterns
 
 * business
 * controller
@@ -18,11 +18,5 @@ Model layer structure in JavaScript prepared to work with RESTFul, IndexedDB and
 
 > Implementations:
 
-* RequireJS [https://github.com/jrburke/requirejs]
-* iQuery [https://github.com/clever--code/iQuery]
-
-> It also supports:
-
-* UnderscoreJs [https://github.com/jashkenas/underscore]
-* jQuery [http://jquery.com/]
-* Among other frameworks in javascript...
+* NodeJS [http://nodejs.org]
+* ExpressJS [http://expressjs.com/]
